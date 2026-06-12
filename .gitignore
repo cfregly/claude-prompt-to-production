@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+data/last_run.json
+data/last_run.md
+.venv/
+.DS_Store

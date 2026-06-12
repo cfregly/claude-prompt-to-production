@@ -1,0 +1,10 @@
+{
+  "company": "Foglight Robotics (FICTIONAL demo company - all numbers invented)",
+  "currency": "USD",
+  "cash_on_hand": 1400000,
+  "monthly_burn": 110000,
+  "mrr": { "2026-01": 38000, "2026-02": 41500, "2026-03": 46000, "2026-04": 52500, "2026-05": 58000 },
+  "customers": { "2026-03": 39, "2026-04": 43, "2026-05": 47 },
+  "churn_rate_monthly": 0.021,
+  "_note": "Shared by 02_agent_with_tools.py AND mcp_server/ - same data, two transports. That is the lesson."
+}

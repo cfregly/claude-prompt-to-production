@@ -1,0 +1,16 @@
+{
+  "_warning": "ILLUSTRATIVE SAMPLE DATA so the table renders without an API key. NOT real measurements. Run `python 04_cost_engineering.py --live` to generate your own numbers, then quote THOSE.",
+  "generated": "sample",
+  "workload": { "questions": 12, "shared_context_tokens_approx": 3600 },
+  "arms": [
+    { "name": "naive (Sonnet, no cache)", "model": "claude-sonnet-4-6", "calls": 12,
+      "input_tokens": 44160, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0,
+      "output_tokens": 3180, "p50_latency_s": 2.86, "cost_usd": 0.1802 },
+    { "name": "cached (Sonnet + prompt caching)", "model": "claude-sonnet-4-6", "calls": 12,
+      "input_tokens": 960, "cache_creation_input_tokens": 3600, "cache_read_input_tokens": 39600,
+      "output_tokens": 3180, "p50_latency_s": 2.12, "cost_usd": 0.0760 },
+    { "name": "routed + cached (Haiku easy / Sonnet hard)", "model": "mixed", "calls": 12,
+      "input_tokens": 960, "cache_creation_input_tokens": 7200, "cache_read_input_tokens": 36000,
+      "output_tokens": 2840, "p50_latency_s": 1.41, "cost_usd": 0.0536 }
+  ]
+}
