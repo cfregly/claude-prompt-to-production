@@ -20,7 +20,8 @@ MODEL = "claude-sonnet-4-6"
 
 SYSTEM = (
     "You are a pragmatic co-pilot for startup founders. Be concrete, be brief, "
-    "and say 'I don't know' when you don't."
+    "and say 'I don't know' when you don't. Write plain prose: no em-dashes, no "
+    "buzzwords (leverage, seamless, game-changing), no 'it's not X, it's Y' framing."
 )
 
 def main() -> None:

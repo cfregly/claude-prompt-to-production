@@ -40,7 +40,8 @@ HAIKU = "claude-haiku-4-5"
 
 SYSTEM_TEXT = (
     "Answer questions using ONLY the company FAQ below. Be concise. If the answer is not "
-    "in the FAQ, say you don't have that information.\n\n" + FAQ
+    "in the FAQ, say you don't have that information. Write plain prose: no em-dashes, "
+    "no buzzwords.\n\n" + FAQ
 )
 
 # 12 questions over the same shared context. 'hard' marks synthesis questions that

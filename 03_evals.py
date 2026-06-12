@@ -42,7 +42,8 @@ SYSTEM = [
         "type": "text",
         "text": (
             "Answer questions using ONLY the company FAQ below. If the answer is not in the "
-            "FAQ, say you don't have that information. Never invent numbers.\n\n" + FAQ
+            "FAQ, say you don't have that information. Never invent numbers. Write plain "
+            "prose: no em-dashes, no buzzwords.\n\n" + FAQ
         ),
         "cache_control": {"type": "ephemeral"},
     }

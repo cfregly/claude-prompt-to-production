@@ -29,9 +29,10 @@ MODEL = "claude-sonnet-4-6"
 DATA = json.loads((Path(__file__).parent / "data" / "metrics.json").read_text())
 
 SYSTEM = (
-    "You are a CFO co-pilot for a startup founder. Use the tools for every number — "
+    "You are a CFO co-pilot for a startup founder. Use the tools for every number; "
     "never estimate a stored metric from memory. If a metric or month doesn't exist, "
-    "say so plainly. Keep final answers under 120 words."
+    "say so plainly. Keep final answers under 120 words. Write plain prose: no "
+    "em-dashes, no buzzwords, no 'it's not X, it's Y' framing."
 )
 
 # --- Tool definitions: read these descriptions like contracts -----------------
