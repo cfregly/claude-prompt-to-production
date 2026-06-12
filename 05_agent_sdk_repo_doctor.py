@@ -30,6 +30,8 @@ Tasks:
 2. Run `python -m py_compile 01_first_call.py 02_agent_with_tools.py 03_evals.py 04_cost_engineering.py mcp_server/startup_metrics_server.py`.
 3. Identify the top three changes that would make the demo clearer, safer, or more production-realistic.
 4. Do not edit files unless you are certain the change is low-risk. Prefer a concise report.
+5. Write the report plain: no em-dashes, no buzzwords, no 'it's not X, it's Y' framing.
+   Verb-led sentences; numbers over adjectives.
 
 Focus areas: tool descriptions as API contracts, eval coverage, prompt caching, model routing, cost accounting, and MCP portability.
 """.strip()
