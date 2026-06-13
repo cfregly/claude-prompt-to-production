@@ -1,6 +1,6 @@
 # claude-prompt-to-production
 
-**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent.
+**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−86%), 8 of 8 evals passing.
 
 Most AI startups don't stall because the model is weak. They stall in one of four places:
 the demo that works once, the agent that breaks at the seams, the eval loop that doesn't exist,
@@ -18,17 +18,17 @@ build and measure it here. A third sibling, [`claude-agent-linter`](https://gith
 is **the interface discipline**: it lints MCP tool definitions into contract-grade shape - and it caught this very
 repo's MCP server shipping empty parameter descriptions (docstrings don't reach the published schema. See
 `mcp_server/startup_metrics_server.py`, now 100/100 after the fix). A fourth sibling,
-[`claude-pitch-linter`](https://github.com/cfregly/claude-pitch-linter), is **the storytelling
+[`claude-pitch-deck-linter`](https://github.com/cfregly/claude-pitch-deck-linter), is **the storytelling
 discipline**: a Sequoia-arc deck builder and linter where every word fights for its place.
 
 ## The 15-minute arc
 
 | Minute | File | The beat |
 |---|---|---|
-| 0–2 | `01_first_call.py` | First streaming call. See tokens and cost before minute three. |
-| 2–6 | `02_agent_with_tools.py` | Give the model hands. Tool descriptions are API contracts. |
-| 6–10 | `03_evals.py` | Evals before vibes - including two *honesty* cases. Wire it into CI. |
-| 10–15 | `04_cost_engineering.py` | Same workload, 3 ways: naive vs cached vs routed. Measured, not asserted. |
+| 0-2 | `01_first_call.py` | First streaming call. See tokens and cost before minute three. |
+| 2-6 | `02_agent_with_tools.py` | Give the model hands. Tool descriptions are API contracts. |
+| 6-10 | `03_evals.py` | Evals before vibes - including two *honesty* cases. Wire it into CI. |
+| 10-15 | `04_cost_engineering.py` | Same workload, 3 ways: naive vs cached vs routed. Measured, not asserted. |
 | encore | `mcp_server/` | The same tools, made portable over MCP for Claude Code / Desktop. |
 | optional | `05_agent_sdk_repo_doctor.py` | Claude Agent SDK scans this repo and proposes concrete improvements. |
 
