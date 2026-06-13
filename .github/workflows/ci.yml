@@ -1,22 +1,24 @@
-name: smoke-test
-
-on:
-  push:
-  pull_request:
-
+name: ci
+on: [push, pull_request]
 jobs:
-  smoke:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.12"
       - name: Install runtime dependencies
         run: |
           python -m pip install --upgrade pip
           pip install anthropic python-dotenv rich mcp
       - name: Compile scripts
         run: python -m py_compile 01_first_call.py 02_agent_with_tools.py 03_evals.py 04_cost_engineering.py 05_agent_sdk_repo_doctor.py mcp_server/startup_metrics_server.py
-      - name: Dry-run benchmark
+      - name: Dry-run benchmark (offline sample data)
         run: python 04_cost_engineering.py
+      - name: Doc-correctness gate
+        run: python scripts/check_docs.py
+      - name: De-slop the README
+        run: |
+          pip install --quiet "git+https://github.com/cfregly/claude-deslop"
+          python -m deslop README.md

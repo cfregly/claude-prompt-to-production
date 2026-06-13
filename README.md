@@ -1,10 +1,13 @@
 # claude-prompt-to-production
 
+[![ci](https://github.com/cfregly/claude-prompt-to-production/actions/workflows/ci.yml/badge.svg)](https://github.com/cfregly/claude-prompt-to-production/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−86%), 8 of 8 evals passing.
 
 Most AI startups don't stall because the model is weak. They stall in one of four places:
 the demo that works once, the agent that breaks at the seams, the eval loop that doesn't exist,
-and the API bill that arrives like a plot twist. This repo is the 15-minute live build I run for
+and the API bill that nobody modeled until it landed. This repo is the 15-minute live build I run for
 founders that walks through all four - in code you can extend, not slides you can forget.
 
 Pair-built with Claude. That's not a disclaimer, it's the demo.
@@ -61,8 +64,8 @@ Two levers, each about ten lines of code:
 
 ### Cost is architecture, not accounting
 
-Most startups discover their AI bill the way you discover a plot twist: after committing to the
-story. The fix is not "negotiate pricing" - it's two architecture decisions, each about ten lines
+Most startups discover their AI bill only after they have committed to the
+architecture. The fix is not "negotiate pricing" - it's two architecture decisions, each about ten lines
 of code, and you can measure them instead of arguing about them.
 
 The experiment: the same 12 founder-FAQ questions over a shared ~5K-token context block, run
@@ -129,6 +132,13 @@ or in `claude_desktop_config.json`:
 ```
 
 Then ask: *"What's our runway, and how's MRR trending?"* - same data as Act 2, zero app code.
+
+## Limitations
+
+This is a teaching scaffold, not a framework. The cost numbers come from one run
+on one workload; rerun on yours before quoting them. Pricing moves, so verify
+against `pricing.json`. The eval set is small on purpose, to show the shape of
+the gate, not to certify a model.
 
 ## About
 
