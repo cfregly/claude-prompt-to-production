@@ -104,6 +104,10 @@ production: keep the eval gate in CI, log tool calls for auditability (Act 2 pri
 and read Anthropic's [usage policies](https://www.anthropic.com/legal/aup) - trust is the actual
 adoption unlock for startups selling into serious industries.
 
+## Claude Skill
+
+Packaged as a Claude Skill in [`skills/prompt-to-production/SKILL.md`](skills/prompt-to-production/SKILL.md). Upload it in Claude (Settings > Capabilities > Skills), then say "take me from prompt to production" or "add evals to my AI product." Claude walks the five acts: first call, tools as contracts, evals in CI, cost engineering, and the MCP encore.
+
 ## Go deeper
 
 - [Claude Developer Platform docs](https://docs.claude.com) - start at tool use, prompt caching, and the Agent SDK
