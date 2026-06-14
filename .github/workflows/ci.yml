@@ -13,9 +13,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install anthropic python-dotenv rich mcp
       - name: Compile scripts
-        run: python -m py_compile 01_first_call.py 02_agent_with_tools.py 03_evals.py 04_cost_engineering.py 05_agent_sdk_repo_doctor.py mcp_server/startup_metrics_server.py
+        run: python -m py_compile 01_first_call.py 02_agent_with_tools.py 03_evals.py 04_cost_engineering.py 05_agent_sdk_repo_doctor.py eval_lint.py mcp_server/startup_metrics_server.py
       - name: Dry-run benchmark (offline sample data)
         run: python 04_cost_engineering.py
+      - name: Lint the eval set (the retention moat)
+        run: |
+          python eval_lint.py --selftest
+          python eval_lint.py data/golden_set.jsonl
       - name: Doc-correctness gate
         run: python scripts/check_docs.py
       - name: De-slop the README
