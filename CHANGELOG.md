@@ -8,9 +8,9 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ### Added
 - `eval_lint.py`: lint the eval set itself, since evals are the retention moat.
   It scores a golden set for moat quality (honesty/refusal coverage, adversarial
-  robustness, gradeability, breadth) so a founder can gate the *quality of the
-  evals* in CI, not just the answers. The bundled golden set scores 97/100; a
-  thin, honesty-free set scores a C and says why. Wired into CI with a selftest.
+  cases, gradeability, breadth) so a founder can gate the *quality of the evals*
+  in CI, not just the answers. The bundled golden set scores 97/100. A thin,
+  honesty-free set scores a C and says why. Wired into CI with a selftest.
 
 ## [0.1.1] - 2026-06-13
 

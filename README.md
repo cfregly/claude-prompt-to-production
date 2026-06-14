@@ -101,7 +101,7 @@ measurements don't lie.
 
 ## Lint the eval set: is it a moat, or a vibe?
 
-Demos win the trial; evals win the renewal. But an eval set is only a moat if it
+Demos win the trial. Evals win the renewal. But an eval set is only a moat if it
 tests what actually loses a customer. `eval_lint.py` scores a golden set the way
 the linters score everything else, so you can gate the *quality of your evals* in
 CI, not just the answers:
@@ -112,8 +112,8 @@ python eval_lint.py --selftest               # the CI check
 ```
 
 It fails a set with no honesty/refusal case (the only kind that catches a
-confident hallucination), no adversarial case (untested robustness), or too few
-cases to be more than a vibe. The bundled golden set passes because it has all
+confident hallucination), no adversarial case (nothing tries to break the
+agent), or too few cases to be more than a vibe. The bundled golden set passes because it has all
 three. A two-case, honesty-free set scores a C and tells you why.
 
 ## Ship responsibly
