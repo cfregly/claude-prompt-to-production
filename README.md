@@ -124,6 +124,29 @@ production: keep the eval gate in CI, log tool calls for auditability (Act 2 pri
 and read Anthropic's [usage policies](https://www.anthropic.com/legal/aup) - trust is the actual
 adoption unlock for startups selling into serious industries.
 
+## Fork the starter and deploy your own
+
+The five acts teach the moves. The [`starter/`](starter/) app is the minimal,
+deployable skeleton you fork to ship your own product: a FastAPI service with one
+Claude-backed endpoint and a one-file chat UI, ready to run locally or in a container.
+
+```bash
+pip install -r starter/requirements.txt
+export ANTHROPIC_API_KEY=...        # from console.anthropic.com
+uvicorn starter.app:app --reload    # open http://localhost:8000
+```
+
+Deploy it as a container anywhere that runs Docker:
+
+```bash
+docker build -f starter/Dockerfile -t claude-starter starter/
+docker run -p 8000:8000 -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY claude-starter
+```
+
+[`starter/README.md`](starter/README.md) has the same flow plus one-command deploys
+for Fly.io and Render. No performance claims live in the starter: it is a skeleton to
+build on, and the numbers above are what you measure once your workload is real.
+
 ## Claude Skill
 
 Packaged as a Claude Skill in [`skills/prompt-to-production/SKILL.md`](skills/prompt-to-production/SKILL.md). Upload it in Claude (Settings > Capabilities > Skills), then say "take me from prompt to production" or "add evals to my AI product." Claude walks the five acts: first call, tools as contracts, evals in CI, cost engineering, and the MCP encore.

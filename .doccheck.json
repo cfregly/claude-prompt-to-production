@@ -2,5 +2,10 @@
   "owner": "cfregly",
   "repo": "claude-prompt-to-production",
   "old_names": [],
-  "docs": ["README.md"]
+  "docs": [
+    "README.md"
+  ],
+  "score_modules": [
+    "eval_lint.py"
+  ]
 }

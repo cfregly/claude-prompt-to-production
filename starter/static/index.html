@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>claude starter</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-weight: 600; }
+  #log { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; min-height: 220px; }
+  .msg { margin: 0.5rem 0; line-height: 1.5; }
+  .who { font-weight: 600; }
+  form { display: flex; gap: 8px; margin-top: 1rem; }
+  input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; }
+  button { padding: 10px 18px; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; cursor: pointer; }
+  .hint { color: #666; font-size: 14px; }
+</style>
+</head>
+<body>
+<h1>claude starter</h1>
+<p class="hint">Fork this app and build your product on top. This page talks to <code>/api/chat</code>.</p>
+<div id="log"></div>
+<form id="f">
+  <input id="m" placeholder="Ask Claude something..." autocomplete="off" autofocus>
+  <button type="submit">Send</button>
+</form>
+<script>
+const log = document.getElementById('log');
+function add(who, text, cls) {
+  const row = document.createElement('div');
+  row.className = 'msg';
+  const tag = document.createElement('span');
+  tag.className = 'who';
+  tag.textContent = who + ': ';
+  row.appendChild(tag);
+  row.appendChild(document.createTextNode(text));
+  log.appendChild(row);
+  log.scrollTop = log.scrollHeight;
+}
+document.getElementById('f').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const input = document.getElementById('m');
+  const text = input.value.trim();
+  if (!text) return;
+  add('You', text);
+  input.value = '';
+  try {
+    const r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text })
+    });
+    const data = await r.json();
+    add('Claude', data.reply || data.error || 'No response.');
+  } catch (err) {
+    add('Claude', 'Request failed: ' + err);
+  }
+});
+</script>
+</body>
+</html>
