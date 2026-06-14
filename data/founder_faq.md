@@ -1,7 +1,7 @@
-# Foglight Robotics — Company FAQ (FICTIONAL demo corpus)
+# Foglight Robotics - Company FAQ (FICTIONAL demo corpus)
 
 > Everything below is invented demo data for the `claude-prompt-to-production` repo. It exists so the
-> benchmark has a realistic ~5,000-token context block to cache — deliberately sized above the
+> benchmark has a realistic ~5,000-token context block to cache - deliberately sized above the
 > minimum cacheable prefix for every current Claude model (2,048 tokens for Sonnet-class,
 > 4,096 for Haiku-class), so the cached arms actually engage the cache. Any resemblance to a
 > real company is coincidental.
@@ -10,7 +10,7 @@
 
 Foglight Robotics is a fictional seed-stage startup headquartered in San Francisco, founded in
 2024 by two former manufacturing-automation engineers. The company builds AI-powered visual
-inspection robots for mid-size manufacturers — plants that run between 2 and 12 production lines
+inspection robots for mid-size manufacturers - plants that run between 2 and 12 production lines
 and historically relied on manual spot checks to catch defects. Foglight currently employs 23
 people across robotics, machine learning, and customer engineering, and serves 47 paying
 customers in North America and Europe.
@@ -42,13 +42,13 @@ All customer data is encrypted in transit (TLS 1.3) and at rest (AES-256). Custo
 labels are **never used to train models shared with other customers**; per-customer fine-tunes
 stay inside that customer's workspace. Foglight is pursuing SOC 2 Type II certification with a
 target completion of Q4 2026; a Type I report is available today under NDA. Data residency is
-supported in two regions — **us-west-2** (Oregon) and **eu-central-1** (Frankfurt) — selected per
+supported in two regions - **us-west-2** (Oregon) and **eu-central-1** (Frankfurt) - selected per
 workspace at onboarding. Customers may request full deletion of their data at any time, and
 deletion is completed within 30 days of a verified request.
 
 ## Support and SLAs
 
-Growth-plan customers receive business-hours support (Monday–Friday, 6am–6pm Pacific) with a
+Growth-plan customers receive business-hours support (Monday-Friday, 6am-6pm Pacific) with a
 first-response target of 8 business hours. Enterprise customers receive 24/7 support with a
 1-hour first-response target for P1 incidents, a **99.9% monthly uptime SLA** on Foglight Cloud,
 and service credits when the SLA is missed. Status and incident history are published at the
@@ -93,24 +93,24 @@ rated for ambient temperatures from 5°C to 45°C and IP54 dust/splash protectio
 are available for wash-down environments at extra cost). A unit needs a standard 110/240V outlet
 and a wired Ethernet drop or industrial Wi-Fi; typical draw is under 200 watts. Installation is
 performed by the customer's maintenance team using the supplied mounting kit and the in-app
-calibration wizard — most installs take two to four hours per line, and no line redesign or PLC
+calibration wizard - most installs take two to four hours per line, and no line redesign or PLC
 changes are required. Scout does not touch parts and adds no cycle time to the line.
 
 ## Models, accuracy, and tuning
 
-Foglight ships **standard models** for common defect families — surface scratches, dents,
+Foglight ships **standard models** for common defect families - surface scratches, dents,
 discoloration, missing fasteners, misaligned labels, incomplete welds, and flash on molded
-parts — and builds **per-customer fine-tunes** on top of them during onboarding. Accuracy is
+parts - and builds **per-customer fine-tunes** on top of them during onboarding. Accuracy is
 always quoted per defect class and per line, never as a single global number, because lighting,
 part geometry, and line speed dominate real-world performance. During calibration, the system
-captures a baseline sample of known-good and known-bad parts (typically 200–500 images per
+captures a baseline sample of known-good and known-bad parts (typically 200-500 images per
 class), trains the per-line tune, and reports precision and recall on a held-out split inside
 the dashboard before alerts go live. Model drift is monitored continuously: when dismissal rates
 or confidence distributions shift beyond per-line thresholds, the dashboard flags the line for
 re-calibration and proposes a retraining window. Retraining happens in the customer's workspace,
 uses only that customer's imagery, and requires explicit approval before a new model version is
-promoted. Every model version is tracked with full lineage — training window, sample counts, and
-evaluation scores — and any previous version can be rolled back in one click.
+promoted. Every model version is tracked with full lineage - training window, sample counts, and
+evaluation scores - and any previous version can be rolled back in one click.
 
 ## Deployment and networking
 
@@ -118,7 +118,7 @@ Each line is paired with a **Foglight Edge Gateway**, a small fanless industrial
 imagery, runs pre-filtering, and uploads to Foglight Cloud over TLS. Sustained upstream bandwidth
 of 10 Mbps per active line is recommended; the gateway buffers up to 72 hours of compressed
 imagery locally during outages and back-fills automatically when connectivity returns, so alerts
-degrade gracefully rather than disappearing. Outbound connectivity uses HTTPS (port 443) only —
+degrade gracefully rather than disappearing. Outbound connectivity uses HTTPS (port 443) only -
 no inbound ports are required. Customers with strict egress policies can restrict the gateway to
 a published set of regional endpoints, and Enterprise customers can route traffic through AWS
 PrivateLink in either supported region. The gateway receives signed over-the-air updates in a
@@ -151,8 +151,8 @@ Foglight Cloud supports four roles: **Owner** (billing and workspace lifecycle),
 (users, lines, integrations), **Engineer** (model tuning, calibration, alert rules), and
 **Operator** (view lines, acknowledge and dismiss alerts). Enterprise SSO supports SAML 2.0 and
 OIDC with just-in-time provisioning and SCIM-based deprovisioning; Growth workspaces use email
-plus mandatory TOTP two-factor authentication. Every privileged action — role changes, model
-promotions, alert-rule edits, exports, deletion requests — lands in an immutable audit log
+plus mandatory TOTP two-factor authentication. Every privileged action - role changes, model
+promotions, alert-rule edits, exports, deletion requests - lands in an immutable audit log
 retained for the life of the workspace and exportable via API.
 
 ## API, webhooks, and limits
@@ -170,7 +170,7 @@ are published for Python and TypeScript; everything else uses plain HTTPS.
 Growth is billed monthly per active robot by credit card or ACH; Enterprise is invoiced annually
 with NET-30 terms and supports purchase orders, vendor-onboarding paperwork, and security
 questionnaires through the customer engineering team. Pricing is in USD; EUR invoicing is
-available for Enterprise. A robot counts as active in any month it captures production imagery —
+available for Enterprise. A robot counts as active in any month it captures production imagery -
 idle or spare units are not billed. Annual prepayment earns the 15% discount on Growth and
 Enterprise alike, and mid-term fleet expansions are prorated. There are no data-ingest,
 storage, or per-alert fees on any plan.
@@ -189,14 +189,14 @@ Onboarding includes role-based training: a two-hour operator session (alert hand
 hygiene) and a half-day engineer session (calibration, tuning, integrations). A self-serve
 documentation portal, recorded course library, and monthly live office hours are available on
 all paid plans, and Enterprise customers can request a quarterly model-health review with their
-named customer engineer. A short certification path for line engineers — "Foglight Certified
-Line Engineer" — is offered twice a year and is popular with multi-plant customers standardizing
+named customer engineer. A short certification path for line engineers - "Foglight Certified
+Line Engineer" - is offered twice a year and is popular with multi-plant customers standardizing
 their rollout.
 
 ## Who Foglight serves
 
 The sweet spot is mid-size discrete manufacturing: automotive tier-2/tier-3 suppliers, consumer
-appliance and electronics assembly, molded plastics, and metal fabrication — plants with 2 to 12
+appliance and electronics assembly, molded plastics, and metal fabrication - plants with 2 to 12
 lines that cannot justify a dedicated machine-vision engineering team. Foglight is not designed
 for continuous-process industries (chemicals, pulp, food slurry lines) or for sub-millimeter
 semiconductor inspection. Reference calls with existing customers in a matching segment can be
@@ -217,10 +217,10 @@ Foglight publishes its envelope so evaluations fail fast instead of failing late
 up to 1.5 m/s continuous for Scout Rail, indexed/stationary for Scout Arm. Part size: 10 mm to
 1.2 m on the longest axis within the standard optics package; smaller or larger parts need a
 scoping call. Defect size: reliably detectable defects are typically 0.5 mm and larger at
-standard working distance — sub-millimeter metrology is out of scope. Lighting: the
+standard working distance - sub-millimeter metrology is out of scope. Lighting: the
 cross-polarized LED array handles most ambient conditions, but direct sunlight on the
 inspection zone and strobing overhead fixtures need shrouding. Connectivity: sustained 10 Mbps
-upstream per active line, outbound HTTPS only. Environments: 5°C–45°C ambient, IP54 standard
+upstream per active line, outbound HTTPS only. Environments: 5°C-45°C ambient, IP54 standard
 (IP65 optional). If a prospect misses two or more of these, customer engineering says so in the
 first call and suggests alternatives rather than running a Pilot that will disappoint.
 
@@ -253,7 +253,7 @@ around full questionnaires for Enterprise evaluations.
 
 Foglight Cloud ships continuously behind feature flags, with customer-visible changes batched
 into a monthly release note and flagged in-app for Admins. Edge Gateway firmware follows a
-slower train — roughly quarterly — and every gateway update is staged: Foglight's own test
+slower train - roughly quarterly - and every gateway update is staged: Foglight's own test
 plants first, then a customer-opt-in early ring, then general rollout, always inside the
 customer-controlled maintenance window. Breaking API changes are announced at least 90 days
 ahead with dual-running endpoints; webhook payloads are additive-only within a major version.
@@ -263,13 +263,13 @@ marketing email ever touching their inbox.
 
 ## Glossary
 
-**Scout** — the camera unit (Rail or Arm). **Foglight Cloud** — the SaaS platform: models,
-alerting, dashboard, API. **Edge Gateway** — the on-prem buffer/uplink appliance. **Line** — one
+**Scout** - the camera unit (Rail or Arm). **Foglight Cloud** - the SaaS platform: models,
+alerting, dashboard, API. **Edge Gateway** - the on-prem buffer/uplink appliance. **Line** - one
 production line under inspection; the pricing and calibration unit is the robot, not the line.
-**Defect class** — one named defect family with its own precision/recall tracking. **Dismissal**
-— an operator marking an alert as not-a-defect; feeds the per-customer tuning loop. **Model
-promotion** — approving a newly trained per-line model version for live alerting. **Masking
-zone** — a camera region excluded from capture for privacy or noise reasons.
+**Defect class** - one named defect family with its own precision/recall tracking. **Dismissal**
+ - an operator marking an alert as not-a-defect; feeds the per-customer tuning loop. **Model
+promotion** - approving a newly trained per-line model version for live alerting. **Masking
+zone** - a camera region excluded from capture for privacy or noise reasons.
 
 ## Common buyer questions
 
@@ -296,7 +296,7 @@ a human within the 1-hour P1 target. Growth customers file a ticket and get firs
 **How do we measure ROI?** The dashboard ships with a value report that tracks four inputs the
 customer controls: scrap cost per defect class, rework labor rate, escape cost (returns, credits,
 chargebacks attributable to quality), and inspection labor displaced or redeployed. Foglight
-never invents these numbers — quality teams enter their own rates, and the report multiplies
+never invents these numbers - quality teams enter their own rates, and the report multiplies
 them against measured defect catches and trends. Most buyers build their business case on
 escapes prevented and rework caught earlier in the line, not on headcount.
 
@@ -308,8 +308,8 @@ lighting or speed is outside the standard envelope so expectations are set befor
 **What does a multi-plant rollout look like?** After the first plant goes live, subsequent
 plants reuse the same workspace patterns: alert-routing templates, role mappings, integration
 configs, and per-defect-class thresholds can be cloned and then tuned per line. Enterprise
-customers typically stand up a small internal center of excellence — one quality engineer and
-one controls engineer — and certify them through the Foglight Certified Line Engineer path; the
+customers typically stand up a small internal center of excellence - one quality engineer and
+one controls engineer - and certify them through the Foglight Certified Line Engineer path; the
 named customer engineer supports the first two plants directly and reviews the rest quarterly.
 
 **How is Foglight different from traditional machine-vision systems?** Classic machine vision is
@@ -346,7 +346,7 @@ expand spend. Billing alerts fire at 80% and 100% of any configured budget.
 
 **Where does Foglight's own AI run?** Model training and batch evaluation run in the same AWS
 region as the customer's workspace (us-west-2 or eu-central-1), on infrastructure dedicated to
-that region. No imagery crosses regions, including for support debugging — support staff access
+that region. No imagery crosses regions, including for support debugging - support staff access
 a workspace only through time-boxed, audit-logged grants approved by a customer Admin.
 
 **Is there an SLA on alert latency?** Enterprise contracts include a target of 10 seconds from
