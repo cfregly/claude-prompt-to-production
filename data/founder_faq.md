@@ -28,20 +28,20 @@ alongside existing equipment and do not require line redesign.
 ## Plans and pricing
 
 Foglight offers three plans. The **Pilot** plan is free for 30 days and includes one Scout unit on
-one production line, standard models, and email support; it exists so a plant manager can prove
+one production line, standard models, and email support. It exists so a plant manager can prove
 value before procurement gets involved. The **Growth** plan costs $1,500 per month per robot,
 billed monthly, and includes the full Foglight Cloud dashboard, Slack and email alerting, API
 access, and business-hours support. The **Enterprise** plan is custom-priced for fleets of ten or
 more robots and adds volume discounts, single sign-on (SSO), custom model tuning, a named
 customer engineer, and contractual SLAs. Annual prepayment on Growth or Enterprise earns a 15%
-discount. There are no per-seat charges on any plan; pricing scales with robots, not users.
+discount. There are no per-seat charges on any plan. Pricing scales with robots, not users.
 
 ## Security and data handling
 
 All customer data is encrypted in transit (TLS 1.3) and at rest (AES-256). Customer imagery and
-labels are **never used to train models shared with other customers**; per-customer fine-tunes
+labels are **never used to train models shared with other customers**. Per-customer fine-tunes
 stay inside that customer's workspace. Foglight is pursuing SOC 2 Type II certification with a
-target completion of Q4 2026; a Type I report is available today under NDA. Data residency is
+target completion of Q4 2026. A Type I report is available today under NDA. Data residency is
 supported in two regions - **us-west-2** (Oregon) and **eu-central-1** (Frankfurt) - selected per
 workspace at onboarding. Customers may request full deletion of their data at any time, and
 deletion is completed within 30 days of a verified request.
@@ -80,18 +80,18 @@ Roadmap items are directional and not contractual commitments.
 
 Foglight has raised a $3.5M seed round and does not publicly disclose revenue figures beyond what
 appears in this demo dataset. The team is actively hiring in robotics, ML, and customer
-engineering. Press and partnership inquiries go to hello@foglight.example; support requests go to
+engineering. Press and partnership inquiries go to hello@foglight.example. Support requests go to
 support@foglight.example.
 
 ## Hardware and installation
 
 Scout ships in two form factors. **Scout Rail** mounts on a fixed rail segment above or beside
-the line and suits continuous-flow lines moving up to 1.5 meters per second; **Scout Arm** mounts
+the line and suits continuous-flow lines moving up to 1.5 meters per second, **Scout Arm** mounts
 on a six-axis arm for stationary or indexed inspection of complex assemblies. Both units use the
 same camera head: a 12-megapixel global-shutter sensor pair with cross-polarized LED lighting,
 rated for ambient temperatures from 5°C to 45°C and IP54 dust/splash protection (IP65 enclosures
 are available for wash-down environments at extra cost). A unit needs a standard 110/240V outlet
-and a wired Ethernet drop or industrial Wi-Fi; typical draw is under 200 watts. Installation is
+and a wired Ethernet drop or industrial Wi-Fi. Typical draw is under 200 watts. Installation is
 performed by the customer's maintenance team using the supplied mounting kit and the in-app
 calibration wizard - most installs take two to four hours per line, and no line redesign or PLC
 changes are required. Scout does not touch parts and adds no cycle time to the line.
@@ -116,7 +116,7 @@ evaluation scores - and any previous version can be rolled back in one click.
 
 Each line is paired with a **Foglight Edge Gateway**, a small fanless industrial PC that buffers
 imagery, runs pre-filtering, and uploads to Foglight Cloud over TLS. Sustained upstream bandwidth
-of 10 Mbps per active line is recommended; the gateway buffers up to 72 hours of compressed
+of 10 Mbps per active line is recommended. The gateway buffers up to 72 hours of compressed
 imagery locally during outages and back-fills automatically when connectivity returns, so alerts
 degrade gracefully rather than disappearing. Outbound connectivity uses HTTPS (port 443) only -
 no inbound ports are required. Customers with strict egress policies can restrict the gateway to
@@ -127,10 +127,10 @@ maintenance window the customer controls.
 ## Data retention and export
 
 Raw inspection imagery is retained for 90 days by default (configurable from 30 to 365 days per
-workspace); defect events, labels, and reports are retained for the life of the workspace.
+workspace). Defect events, labels, and reports are retained for the life of the workspace.
 Customers can export imagery and labels at any time in standard formats (PNG/JPEG plus JSON or
 CSV manifests) through the dashboard or API, and exports are the customer's to keep. Disabling a
-line stops capture immediately; deleting a workspace triggers the standard 30-day deletion
+line stops capture immediately. Deleting a workspace triggers the standard 30-day deletion
 pipeline covering imagery, labels, fine-tuned weights, and derived artifacts, with a signed
 deletion certificate available on request.
 
@@ -139,7 +139,7 @@ deletion certificate available on request.
 Beyond the SOC 2 program described above, Foglight signs a standard **Data Processing Addendum**
 with EU customers, supports GDPR data-subject workflows (inspection imagery rarely contains
 personal data, but plant-floor cameras can incidentally capture people, so masking zones can be
-configured per camera). A current subprocessor list is published in the trust center; material
+configured per camera). A current subprocessor list is published in the trust center. Material
 changes are announced 30 days in advance. An independent penetration test is performed annually,
 with the executive summary available under NDA, and a coordinated vulnerability-disclosure
 policy with a security contact is published at the trust center. Foglight does not use customer
@@ -150,7 +150,7 @@ data for advertising and claims no ownership over customer imagery, labels, or f
 Foglight Cloud supports four roles: **Owner** (billing and workspace lifecycle), **Admin**
 (users, lines, integrations), **Engineer** (model tuning, calibration, alert rules), and
 **Operator** (view lines, acknowledge and dismiss alerts). Enterprise SSO supports SAML 2.0 and
-OIDC with just-in-time provisioning and SCIM-based deprovisioning; Growth workspaces use email
+OIDC with just-in-time provisioning and SCIM-based deprovisioning. Growth workspaces use email
 plus mandatory TOTP two-factor authentication. Every privileged action - role changes, model
 promotions, alert-rule edits, exports, deletion requests - lands in an immutable audit log
 retained for the life of the workspace and exportable via API.
@@ -163,13 +163,13 @@ burst headroom, and list endpoints use cursor pagination. Webhooks sign every de
 HMAC header, retry with exponential backoff for up to 24 hours on non-2xx responses, and can be
 replayed from the dashboard for the trailing 7 days. A sandbox workspace with synthetic line data
 is available on every plan so integration work never touches production alerts. Client libraries
-are published for Python and TypeScript; everything else uses plain HTTPS.
+are published for Python and TypeScript. Everything else uses plain HTTPS.
 
 ## Billing and procurement
 
-Growth is billed monthly per active robot by credit card or ACH; Enterprise is invoiced annually
+Growth is billed monthly per active robot by credit card or ACH. Enterprise is invoiced annually
 with NET-30 terms and supports purchase orders, vendor-onboarding paperwork, and security
-questionnaires through the customer engineering team. Pricing is in USD; EUR invoicing is
+questionnaires through the customer engineering team. Pricing is in USD. EUR invoicing is
 available for Enterprise. A robot counts as active in any month it captures production imagery -
 idle or spare units are not billed. Annual prepayment earns the 15% discount on Growth and
 Enterprise alike, and mid-term fleet expansions are prorated. There are no data-ingest,
@@ -178,7 +178,7 @@ storage, or per-alert fees on any plan.
 ## Incidents and maintenance
 
 Severity definitions are published: **P1** is a platform outage or stopped alerting on an active
-line; **P2** is degraded performance with a workaround; **P3** is a non-blocking defect or
+line, **P2** is degraded performance with a workaround, **P3** is a non-blocking defect or
 question. Planned maintenance is announced at least 7 days ahead and executed in regional
 low-traffic windows, and Enterprise customers receive a written root-cause analysis within five
 business days of any P1. The status page publishes a rolling 12-month uptime history per region.
@@ -200,7 +200,7 @@ appliance and electronics assembly, molded plastics, and metal fabrication - pla
 lines that cannot justify a dedicated machine-vision engineering team. Foglight is not designed
 for continuous-process industries (chemicals, pulp, food slurry lines) or for sub-millimeter
 semiconductor inspection. Reference calls with existing customers in a matching segment can be
-arranged for Enterprise evaluations under mutual NDA; written case studies use customer-approved
+arranged for Enterprise evaluations under mutual NDA. Written case studies use customer-approved
 figures only.
 
 ## Partners and resellers
@@ -208,14 +208,14 @@ figures only.
 A small partner program covers systems integrators and MES vendors: partners get a demo
 workspace, integration sandbox, and co-marketing support, and registered deals carry a standard
 referral margin. Foglight does not white-label the platform. Hardware is sold and supported
-directly by Foglight in North America and the EU; other regions are served case-by-case through
+directly by Foglight in North America and the EU. Other regions are served case-by-case through
 integration partners pending local certification.
 
 ## Operating limits and good-fit checklist
 
 Foglight publishes its envelope so evaluations fail fast instead of failing late. Line speed:
 up to 1.5 m/s continuous for Scout Rail, indexed/stationary for Scout Arm. Part size: 10 mm to
-1.2 m on the longest axis within the standard optics package; smaller or larger parts need a
+1.2 m on the longest axis within the standard optics package. Smaller or larger parts need a
 scoping call. Defect size: reliably detectable defects are typically 0.5 mm and larger at
 standard working distance - sub-millimeter metrology is out of scope. Lighting: the
 cross-polarized LED array handles most ambient conditions, but direct sunlight on the
@@ -228,7 +228,7 @@ first call and suggests alternatives rather than running a Pilot that will disap
 
 Scout units carry CE and FCC Class A marks, and the LED lighting array is certified eye-safe
 (IEC 62471 Risk Group 1) at all supported working distances, so no curtains or interlocks are
-required for the lighting itself. Scout Rail has no moving parts beyond an internal focus motor;
+required for the lighting itself. Scout Rail has no moving parts beyond an internal focus motor,
 Scout Arm installations follow the arm vendor's standard safety assessment, and Foglight's
 mounting kit documentation includes the load and clearance specs an EHS reviewer needs. Units
 are RoHS-compliant, the enclosure is rated for standard industrial vibration profiles, and
@@ -238,14 +238,14 @@ EU. A one-page EHS datasheet per form factor is available for plant safety revie
 ## Procurement security review: fast facts
 
 For security questionnaires, the short answers most reviewers need: encryption in transit is
-TLS 1.3 and at rest is AES-256; customer imagery never trains shared models; per-customer
-fine-tunes stay in the customer workspace; SOC 2 Type I report available under NDA today, Type
-II targeted Q4 2026; data residency selectable at onboarding between us-west-2 (Oregon) and
-eu-central-1 (Frankfurt); deletion completed within 30 days of a verified request with a signed
-certificate available; SSO via SAML 2.0/OIDC with SCIM deprovisioning on Enterprise; immutable
-audit logging on privileged actions; annual third-party penetration test with summary under
-NDA; published subprocessor list with 30-day change notice; outbound-only connectivity on port
-443 with optional PrivateLink; support access is time-boxed, customer-approved, and audit
+TLS 1.3 and at rest is AES-256. Customer imagery never trains shared models. Per-customer
+fine-tunes stay in the customer workspace. SOC 2 Type I report available under NDA today, Type
+II targeted Q4 2026. Data residency selectable at onboarding between us-west-2 (Oregon) and
+eu-central-1 (Frankfurt). Deletion completed within 30 days of a verified request with a signed
+certificate available. SSO via SAML 2.0/OIDC with SCIM deprovisioning on Enterprise. Immutable
+audit logging on privileged actions. Annual third-party penetration test with summary under
+NDA. Published subprocessor list with 30-day change notice. Outbound-only connectivity on port
+443 with optional PrivateLink. Support access is time-boxed, customer-approved, and audit
 logged. Longer-form answers live in the trust center, and the customer engineering team turns
 around full questionnaires for Enterprise evaluations.
 
@@ -256,7 +256,7 @@ into a monthly release note and flagged in-app for Admins. Edge Gateway firmware
 slower train - roughly quarterly - and every gateway update is staged: Foglight's own test
 plants first, then a customer-opt-in early ring, then general rollout, always inside the
 customer-controlled maintenance window. Breaking API changes are announced at least 90 days
-ahead with dual-running endpoints; webhook payloads are additive-only within a major version.
+ahead with dual-running endpoints. Webhook payloads are additive-only within a major version.
 Customers can subscribe per-workspace to release notes, incident notifications, and
 maintenance announcements independently, so a plant manager can get incident pages without
 marketing email ever touching their inbox.
@@ -265,9 +265,9 @@ marketing email ever touching their inbox.
 
 **Scout** - the camera unit (Rail or Arm). **Foglight Cloud** - the SaaS platform: models,
 alerting, dashboard, API. **Edge Gateway** - the on-prem buffer/uplink appliance. **Line** - one
-production line under inspection; the pricing and calibration unit is the robot, not the line.
+production line under inspection. The pricing and calibration unit is the robot, not the line.
 **Defect class** - one named defect family with its own precision/recall tracking. **Dismissal**
- - an operator marking an alert as not-a-defect; feeds the per-customer tuning loop. **Model
+ - an operator marking an alert as not-a-defect. Feeds the per-customer tuning loop. **Model
 promotion** - approving a newly trained per-line model version for live alerting. **Masking
 zone** - a camera region excluded from capture for privacy or noise reasons.
 
@@ -282,7 +282,7 @@ with the rest of the workspace under the standard 30-day deletion policy. Export
 raw imagery already downloaded by the customer are theirs to keep.
 
 **Do you offer professional services?** Limited. The customer engineering team handles standard
-integrations as part of Enterprise onboarding; bespoke MES work beyond the webhook interface is
+integrations as part of Enterprise onboarding. Bespoke MES work beyond the webhook interface is
 quoted separately and scheduled based on availability.
 
 **How are false positives handled?** Operators can dismiss alerts with one click, and dismissals
@@ -291,7 +291,7 @@ weeks of operation as the model adapts to that line's parts and lighting.
 
 **Who do we call when something breaks at 2am?** Enterprise customers page the 24/7 line and get
 a human within the 1-hour P1 target. Growth customers file a ticket and get first response within
-8 business hours; most issues are resolved remotely without a site visit.
+8 business hours. Most issues are resolved remotely without a site visit.
 
 **How do we measure ROI?** The dashboard ships with a value report that tracks four inputs the
 customer controls: scrap cost per defect class, rework labor rate, escape cost (returns, credits,
@@ -309,7 +309,7 @@ lighting or speed is outside the standard envelope so expectations are set befor
 plants reuse the same workspace patterns: alert-routing templates, role mappings, integration
 configs, and per-defect-class thresholds can be cloned and then tuned per line. Enterprise
 customers typically stand up a small internal center of excellence - one quality engineer and
-one controls engineer - and certify them through the Foglight Certified Line Engineer path; the
+one controls engineer - and certify them through the Foglight Certified Line Engineer path. The
 named customer engineer supports the first two plants directly and reviews the rest quarterly.
 
 **How is Foglight different from traditional machine-vision systems?** Classic machine vision is
@@ -323,24 +323,24 @@ bottling lines, purpose-built vision hardware still wins, and Foglight says so i
 **Can Foglight run fully on-premises?** Not today. The Edge Gateway keeps capture and buffering
 local and tolerates extended outages, but model training and the dashboard run in Foglight
 Cloud. The on-prem inference appliance on the public roadmap (targeted Q4 2026) is aimed at
-air-gapped facilities; design partners for that program are being selected from existing
+air-gapped facilities. Design partners for that program are being selected from existing
 Enterprise customers.
 
 **What happens during a network outage?** Capture continues, the gateway buffers locally for up
 to 72 hours, operators keep receiving on-floor alerts from the gateway's local rules for defect
 classes already promoted to the edge, and the cloud back-fills when connectivity returns.
-Nothing is silently dropped; back-filled events are marked as delayed in the audit trail.
+Nothing is silently dropped. Back-filled events are marked as delayed in the audit trail.
 
 **Do you support languages other than English?** The dashboard and operator alert surfaces ship
-in English, Spanish, and German; documentation is English-only today. Alert payloads delivered
+in English, Spanish, and German. Documentation is English-only today. Alert payloads delivered
 over webhooks are language-neutral JSON, so customers localize downstream surfaces however they
 like.
 
-**What is the contract minimum?** Growth is month-to-month with no minimum term; Enterprise
+**What is the contract minimum?** Growth is month-to-month with no minimum term. Enterprise
 agreements run annually with a two-robot minimum. There is no charge for the Pilot, and Pilot
 hardware is returned or rolled into the first order at conversion.
 
-**Can we cap our bill?** Yes. Admins can set a hard monthly robot ceiling per workspace;
+**Can we cap our bill?** Yes. Admins can set a hard monthly robot ceiling per workspace,
 activating a robot above the ceiling requires an Owner override, so a plant cannot accidentally
 expand spend. Billing alerts fire at 80% and 100% of any configured budget.
 

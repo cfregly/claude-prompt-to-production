@@ -16,7 +16,7 @@ Pair-built with Claude. That's not a disclaimer, it's the demo.
 
 This repo is **the engineering discipline**: build the agent, gate it with evals, measure the cost.
 Its sibling, [`claude-startup-linter`](https://github.com/cfregly/claude-startup-linter), is **the strategy
-instrument**: score a pitch, sharpen the path to product-market fit, answer platform risk, route the model. Diagnose the business there;
+instrument**: score a pitch, sharpen the path to product-market fit, answer platform risk, route the model. Diagnose the business there,
 build and measure it here. A third sibling, [`claude-agent-linter`](https://github.com/cfregly/claude-agent-linter),
 is **the interface discipline**: it lints MCP tool definitions into contract-grade shape - and it caught this very
 repo's MCP server shipping empty parameter descriptions (docstrings don't reach the published schema. See
@@ -136,7 +136,7 @@ Then ask: *"What's our runway, and how's MRR trending?"* - same data as Act 2, z
 ## Limitations
 
 This is a teaching scaffold, not a framework. The cost numbers come from one run
-on one workload; rerun on yours before quoting them. Pricing moves, so verify
+on one workload. Rerun on yours before quoting them. Pricing moves, so verify
 against `pricing.json`. The eval set is small on purpose, to show the shape of
 the gate, not to certify a model.
 

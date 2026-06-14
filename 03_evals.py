@@ -5,6 +5,12 @@ A tiny eval harness over data/golden_set.jsonl. Two of the eight cases are
 *honesty* cases: the right answer is "I don't have that," and shipping an
 agent that can say so is a feature, not a failure.
 
+The code grader is a cheap substring check, and it has false negatives: a valid
+"I don't have that" phrased a new way ("the FAQ does not include...") fails the
+literal match. That is the lesson. With --judge, an LLM judge adjudicates when
+the two disagree, recovering the valid answer the substring check missed -- the
+reason you layer a judge on top of cheap checks instead of trusting either alone.
+
 Why founders should care: your eval set is the only artifact that encodes
 YOUR customers' definition of "good." Demos get you a seed round; evals get
 you renewals. Wire this into CI — the script exits non-zero below threshold.
@@ -93,25 +99,42 @@ def main() -> None:
             table.add_column(col)
 
     passed = 0
+    recovered = 0   # code grader missed it; the judge caught the valid answer
+    overruled = 0   # code grader passed it; the judge caught a false pass
     for case in cases:
         resp = client.messages.create(
             model=ANSWER_MODEL, max_tokens=300, system=SYSTEM,
             messages=[{"role": "user", "content": case["q"]}],
         )
         answer = "".join(b.text for b in resp.content if b.type == "text").strip()
-        ok = grade_code(answer, case)
-        row = [case["id"], "[green]PASS[/green]" if ok else "[red]FAIL[/red]"]
+        ok_code = grade_code(answer, case)
+        row = [case["id"], "[green]PASS[/green]" if ok_code else "[red]FAIL[/red]"]
+        final = ok_code
         if args.judge:
             jok = grade_judge(client, case, answer)
-            ok = ok and jok
             row.append("[green]PASS[/green]" if jok else "[red]FAIL[/red]")
+            # The judge adjudicates: it is the authority when the two disagree, so
+            # it can RECOVER a valid answer the substring grader missed -- not only
+            # catch a false pass. That recovery is the whole reason to add a judge.
+            final = jok
+            recovered += int(jok and not ok_code)
+            overruled += int(ok_code and not jok)
         row.append(answer.replace("\n", " ")[:80])
         table.add_row(*row)
-        passed += ok
+        passed += int(final)
 
     score = passed / len(cases)
     console.print(table)
     console.print(f"\nscore: {passed}/{len(cases)} = {score:.0%}  (threshold {PASS_THRESHOLD:.0%})")
+    if args.judge and (recovered or overruled):
+        console.print(
+            f"[dim]judge adjudicated: recovered {recovered} valid answer(s) the "
+            f"substring grader failed, overruled {overruled} false pass(es).[/dim]")
+    if not args.judge and passed < len(cases):
+        console.print(
+            "[dim]note: a substring grader has false negatives — a valid \"I don't "
+            "have that\" phrased a new way fails the literal check. Run with --judge "
+            "to let the LLM judge adjudicate.[/dim]")
     if score < PASS_THRESHOLD:
         console.print("[red]Below threshold — failing the build. That's the point.[/red]")
         sys.exit(1)

@@ -36,7 +36,7 @@ eval set wins the renewal.
 
 ### 4. Cost is architecture
 Run the same workload three ways: naive, cached, routed. Prompt caching pays
-for the shared context once; model routing prices questions by consequence.
+for the shared context once. Model routing prices questions by consequence.
 Measure it, do not assert it. A low per-interaction cost is also what lets a
 startup give the product away as a growth lever.
 
