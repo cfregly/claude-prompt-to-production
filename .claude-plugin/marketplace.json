@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "prompt-to-production",
-      "source": ".",
+      "source": "./",
       "description": "Take a Claude feature from first call to evaluated, cost-engineered, MCP-exposed production, with a forkable starter app."
     }
   ]
