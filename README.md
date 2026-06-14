@@ -69,14 +69,14 @@ architecture. The fix is not "negotiate pricing" - it's two architecture decisio
 of code, and you can measure them instead of arguing about them.
 
 The experiment: the same 12 founder-FAQ questions over a shared ~5K-token context block, run
-three ways. Latest live run (2026-06-10, models and pricing in `pricing.json`. Cache reads
+three ways. Latest live run (2026-06-13, models and pricing in `pricing.json`. Cache reads
 engaged on all 24 cached calls):
 
 | strategy | model | cost | p50 latency | vs naive |
 |---|---|---|---|---|
-| naive (Sonnet, no cache) | claude-sonnet-4-6 | $0.2196 | 2.39s | baseline |
-| cached (Sonnet + prompt caching) | claude-sonnet-4-6 | $0.0585 | 2.26s | **-73%** |
-| routed + cached (Haiku easy / Sonnet hard) | mixed | $0.0335 | 1.68s | **-85%** |
+| naive (Sonnet, no cache) | claude-sonnet-4-6 | $0.2181 | 2.45s | baseline |
+| cached (Sonnet + prompt caching) | claude-sonnet-4-6 | $0.0565 | 2.25s | **-74%** |
+| routed + cached (Haiku easy / Sonnet hard) | mixed | $0.0313 | 1.85s | **-86%** |
 
 What each lever does:
 
@@ -89,9 +89,9 @@ What each lever does:
   optimization you will ever ship - and in this run it also cut p50 latency 30%, because the
   easy questions stopped waiting on a bigger model.
 
-Reproducibility note: we ran this twice on the same day. Morning: -75% / -86% with flat latency.
-Afternoon: -73% / -85% with faster latency. The costs agree within two points. The latency story
-varies with load - which is exactly why this repo measures instead of asserts.
+Reproducibility note: these are the numbers committed in `data/last_run.md`. Re-running shifts the
+cost by a point or two and the latency more, because latency moves with load, which is exactly why
+this repo measures instead of asserts.
 
 > Rerun it yourself: `python 04_cost_engineering.py --live` writes your numbers to
 > `data/last_run.md` - quote your own run, never someone else's.
@@ -143,21 +143,25 @@ docker build -f starter/Dockerfile -t claude-starter starter/
 docker run -p 8000:8000 -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY claude-starter
 ```
 
-[`starter/README.md`](starter/README.md) has the same flow plus one-command deploys
-for Fly.io and Render. No performance claims live in the starter: it is a skeleton to
-build on, and the numbers above are what you measure once your workload is real.
+Run the commands above from the repo root. [`starter/README.md`](starter/README.md) has the
+same flow plus one-command deploys for Fly.io and Render. The starter follows the same shape as
+the official [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts), a
+minimal deployable Claude app you fork, with the eval and cost discipline from the repo root added
+on top. No performance claims live in the starter: it is a skeleton to build on, and the numbers
+above are what you measure once your workload is real.
 
 ## Claude Skill
 
-Packaged as a Claude Skill in [`skills/prompt-to-production/SKILL.md`](skills/prompt-to-production/SKILL.md). Upload it in Claude (Settings > Capabilities > Skills), then say "take me from prompt to production" or "add evals to my AI product." Claude walks the five acts: first call, tools as contracts, evals in CI, cost engineering, and the MCP encore.
+Packaged as a Claude Skill in [`skills/prompt-to-production/SKILL.md`](skills/prompt-to-production/SKILL.md). Install it as a Claude Code plugin with `/plugin marketplace add cfregly/claude-prompt-to-production` then `/plugin install prompt-to-production@prompt-to-production-plugins`, or upload the `skills/prompt-to-production/` folder in the Claude app under Settings > Skills (see [Anthropic's skills guide](https://github.com/anthropics/skills)). Then say "take me from prompt to production" or "add evals to my AI product." Claude walks the five acts: first call, tools as contracts, evals in CI, cost engineering, and the MCP encore.
 
 ## Go deeper
 
 - [Claude Developer Platform docs](https://docs.claude.com) - start at tool use, prompt caching, and the Agent SDK
 - [anthropics/claude-code](https://github.com/anthropics/claude-code) - the agentic coding tool this repo was pair-built with
-- [anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) and [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts) - patterns to steal
+- [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) and [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts) - patterns to steal
 - [anthropics/claude-agent-sdk-demos](https://github.com/anthropics/claude-agent-sdk-demos) - official Agent SDK patterns (pairs with Act 5)
 - [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) - the MCP server ecosystem the encore plugs into
+- [Claude for Startups](https://claude.com/programs/startups) - credits and the highest rate limits once a founder is ready to ship on the first-party API
 
 ### Using the MCP encore with Claude Code / Desktop
 

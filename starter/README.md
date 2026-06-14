@@ -1,7 +1,9 @@
 # starter: fork this and ship your first Claude app
 
 The repo root teaches the moves in five short acts. This `starter/` app is the
-minimal, deployable skeleton you fork to build your own product on top of Claude.
+minimal, deployable skeleton you fork to build your own product on top of Claude. It follows the
+same shape as the official [anthropics/claude-quickstarts](https://github.com/anthropics/claude-quickstarts),
+with the eval and cost discipline from the repo root added on top.
 
 It is one small FastAPI service:
 
@@ -13,6 +15,8 @@ No performance claims live here. The starter is a skeleton. The cost and eval
 numbers in the root README are things you measure once your own workload is real.
 
 ## Run it locally
+
+Run these from the repo root (not from inside `starter/`):
 
 ```bash
 pip install -r starter/requirements.txt

@@ -1,0 +1,15 @@
+{
+  "name": "prompt-to-production",
+  "version": "0.1.0",
+  "description": "Take a Claude feature from first call to evaluated, cost-engineered, MCP-exposed production, with a forkable starter app.",
+  "author": {
+    "name": "Chris Fregly"
+  },
+  "keywords": [
+    "evals",
+    "cost",
+    "mcp",
+    "agent-sdk",
+    "claude-code"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "prompt-to-production-plugins",
+  "owner": {
+    "name": "Chris Fregly"
+  },
+  "plugins": [
+    {
+      "name": "prompt-to-production",
+      "source": ".",
+      "description": "Take a Claude feature from first call to evaluated, cost-engineered, MCP-exposed production, with a forkable starter app."
+    }
+  ]
+}
