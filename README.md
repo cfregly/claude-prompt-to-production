@@ -3,7 +3,7 @@
 [![ci](https://github.com/cfregly/claude-prompt-to-production/actions/workflows/ci.yml/badge.svg)](https://github.com/cfregly/claude-prompt-to-production/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−86%), 8 of 8 evals passing.
+**Build the product.** A founder's 15-minute path from first Claude API call to an evaluated, cost-engineered agent. Measured live: $0.22 to $0.03 per task (−86%), and every available eval tier passing.
 
 Most AI startups don't stall because the model is weak. They stall in one of four places:
 the demo that works once, the agent that breaks at the seams, the eval loop that doesn't exist,
@@ -30,7 +30,7 @@ discipline**: a Sequoia-arc deck builder and linter where every word fights for 
 |---|---|---|
 | 0-2 | `01_first_call.py` | First streaming call. See tokens and cost before minute three. |
 | 2-6 | `02_agent_with_tools.py` | Give the model hands. Tool descriptions are API contracts. |
-| 6-10 | `03_evals.py` | Evals before vibes - including two *honesty* cases. Wire it into CI. |
+| 6-10 | `03_evals.py` | Evals before vibes: two *honesty* cases, routed across the model ladder and gated per tier (junior Haiku to distinguished Fable), so every tier is proven before Act 4 claims its savings. Wire it into CI. |
 | 10-15 | `04_cost_engineering.py` | Same workload, 3 ways: naive vs cached vs routed. Measured, not asserted. |
 | encore | `mcp_server/` | The same tools, made portable over MCP for Claude Code / Desktop. |
 | optional | `05_agent_sdk_repo_doctor.py` | Claude Agent SDK scans this repo and proposes concrete improvements. |
@@ -44,7 +44,7 @@ cp .env.example .env          # paste your key from console.anthropic.com
 
 python 01_first_call.py
 python 02_agent_with_tools.py
-python 03_evals.py            # add --judge for an LLM judge on the honesty cases
+python 03_evals.py            # routed and gated per tier, writes data/last_eval.md (--judge adds an LLM judge)
 python 04_cost_engineering.py --live
 python 05_agent_sdk_repo_doctor.py   # optional Agent SDK act
 ```
@@ -119,7 +119,10 @@ three. A two-case, honesty-free set scores a C and tells you why.
 ## Ship responsibly
 
 Two of the eight eval cases pass only when the agent says **"I don't have that."** An agent that
-can decline gracefully is a feature you can sell to enterprises, not a benchmark penalty. Before
+can decline gracefully is a feature you can sell to enterprises, not a benchmark penalty. The gate
+runs each case through the routing policy and fails on any single tier below the bar, so a
+cheaper tier cannot quietly trade quality for cost, and each run writes the per-tier result to
+`data/last_eval.md`. Before
 production: keep the eval gate in CI, log tool calls for auditability (Act 2 prints its trace),
 and read Anthropic's [usage policies](https://www.anthropic.com/legal/aup) - trust is the actual
 adoption unlock for startups selling into serious industries.
