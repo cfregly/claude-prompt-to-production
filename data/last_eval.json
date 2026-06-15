@@ -1,0 +1,35 @@
+{
+  "generated": "2026-06-14 19:44:15",
+  "threshold": 0.75,
+  "graded_by": "code + Haiku judge",
+  "tiers": {
+    "Haiku (junior)": {
+      "model": "claude-haiku-4-5",
+      "passed": 4,
+      "total": 4,
+      "pass_rate": 1.0
+    },
+    "Sonnet (senior)": {
+      "model": "claude-sonnet-4-6",
+      "passed": 2,
+      "total": 2,
+      "pass_rate": 1.0
+    },
+    "Opus (principal)": {
+      "model": "claude-opus-4-8",
+      "passed": 1,
+      "total": 1,
+      "pass_rate": 1.0
+    },
+    "Fable (distinguished)": {
+      "model": "claude-fable-5",
+      "available": false,
+      "skipped": 1
+    }
+  },
+  "overall_ran": {
+    "passed": 7,
+    "total": 7,
+    "pass_rate": 1.0
+  }
+}

@@ -30,9 +30,12 @@ failure modes, return shape. Lint them with the agent-linter.
 
 ### 3. Evals before vibes
 Run the golden cases, including two honesty cases where the pass condition is
-saying "I don't have that" instead of inventing an answer. Wire the gate into
-CI. The eval set is also the retention instrument: the demo wins the trial, the
-eval set wins the renewal.
+saying "I don't have that" instead of inventing an answer. The act routes each
+case across the model ladder by consequence and gates every tier on its own, so
+every tier is proven before the cost table claims its savings, and it writes the
+per-tier receipt to data/last_eval.md. Wire the gate into CI. The eval set is
+also the retention instrument: the demo wins the trial, the eval set wins the
+renewal.
 
 ### 4. Cost is architecture
 Run the same workload three ways: naive, cached, routed. Prompt caching pays
